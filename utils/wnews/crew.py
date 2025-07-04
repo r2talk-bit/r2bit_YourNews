@@ -1,8 +1,10 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
-from crewai_tools import SerperDevTool
+from crewai_tools import ScrapeWebsiteTool, SerperDevTool
+from pydantic import BaseModel
 import yaml
 import os
+
 
 # If you want to run a snippet of code before or after the crew starts,
 # you can use the @before_kickoff and @after_kickoff decorators
@@ -15,41 +17,37 @@ class Wnews():
     # Learn more about YAML configuration files here:
     # Agents: https://docs.crewai.com/concepts/agents#yaml-configuration-recommended
     # Tasks: https://docs.crewai.com/concepts/tasks#yaml-configuration-recommended
-    agents_config_path = 'config/agents.yaml'
-    tasks_config_path = 'config/tasks.yaml'
     
-    # Load YAML configs with explicit UTF-8 encoding
-    @property
-    def agents_config(self):
+    def __init__(self):
+        # Set the configuration paths
+        self._agents_config_path = 'config/agents.yaml'
+        self._tasks_config_path = 'config/tasks.yaml'
+        # Get the absolute paths for the configuration files
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        config_path = os.path.join(current_dir, self.agents_config_path)
-        with open(config_path, 'r', encoding='utf-8') as file:
-            return yaml.safe_load(file)
+        self._full_agents_config_path = os.path.join(current_dir, self._agents_config_path)
+        self._full_tasks_config_path = os.path.join(current_dir, self._tasks_config_path)
     
-    @property
-    def tasks_config(self):
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        config_path = os.path.join(current_dir, self.tasks_config_path)
-        with open(config_path, 'r', encoding='utf-8') as file:
-            return yaml.safe_load(file)
+    
+    agents_config = "config/agents.yaml"
+    tasks_config = "config/tasks.yaml"
 
     # Create tools
-    search_tool = SerperDevTool()
+    # search_tool = SerperDevTool()
 
     # If you would like to add tools to your agents, you can learn more about it here:
     # https://docs.crewai.com/concepts/agents#agent-tools
     @agent
-    def ai_insights_curator(self) -> Agent:
+    def news_researcher(self) -> Agent:
         return Agent(
-            config=self.agents_config['ai_insights_curator'],
-            tools=[self.search_tool],
+            config=self.agents_config['news_researcher'],
+            tools=[SerperDevTool(),ScrapeWebsiteTool()],
             verbose=True
         )
 
     @agent
-    def ai_content_writer(self) -> Agent:
+    def news_curator_analyst(self) -> Agent:
         return Agent(
-            config=self.agents_config['ai_content_writer'],
+            config=self.agents_config['news_curator_analyst'],
             verbose=True
         )
 
@@ -64,17 +62,18 @@ class Wnews():
     # task dependencies, and task callbacks, check out the documentation:
     # https://docs.crewai.com/concepts/tasks#overview-of-a-task
     @task
-    def curate_ai_insights_task(self) -> Task:
+    def news_research_task(self) -> Task:
         return Task(
-            config=self.tasks_config['curate_ai_insights_task'],
-            output_file='insights.txt'
+            config=self.tasks_config['news_research_task'],
+            output_file='news_research.txt'
         )
 
     @task
-    def write_impact_analysis_task(self) -> Task:
+    def news_curator_analyst_task(self) -> Task:
         return Task(
-            config=self.tasks_config['write_impact_analysis_task'],
-            context=[self.curate_ai_insights_task()]
+            config=self.tasks_config['news_curator_analyst_task'],
+            output_file='news_analysis.txt',
+            context=[self.news_research_task()]
         )
 
     @task
@@ -82,7 +81,7 @@ class Wnews():
         return Task(
             config=self.tasks_config['review_and_edit_task'],
             output_file='r2talk_newsletter.md',
-            context=[self.write_impact_analysis_task()]
+            context=[self.news_curator_analyst_task()]
         )
 
     @crew

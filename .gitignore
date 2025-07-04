@@ -46,3 +46,8 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Generated content files
+news_analysis.txt
+news_research.txt
+r2talk_newsletter.md
