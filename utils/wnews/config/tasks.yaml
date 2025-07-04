@@ -1,0 +1,89 @@
+curate_ai_insights_task:
+  description: >
+    Realize uma busca detalhada para coletar e organizar as notícias mais relevantes e impactantes publicadas na última semana de julho de 2025, com foco prioritário em fontes brasileiras. O objetivo é fornecer insights curados para inclusão em um boletim informativo.
+
+    Detailed Instructions:
+
+    Seleção de Conteúdo:
+    - Identifique no mínimo 30 fatos ou anúncios significativos publicados nos últimos 7 dias.
+    - Priorize anúncios oficiais e reportagens de jornais de grande circulação no Brasil, como Folha de S.Paulo, O Globo, Estadão, Agência Brasil, além de comunicados oficiais de empresas e órgãos governamentais brasileiros.
+    - Busque conteúdos publicados em português para garantir autenticidade e contexto local.
+
+    Fontes Confiáveis:
+    - Utilize exclusivamente fontes seguras, confiáveis e verificáveis, tais como:
+      - Blogs oficiais de empresas e comunicados de imprensa.
+      - Publicações acadêmicas e de pesquisa reconhecidas.
+      - Veículos jornalísticos estabelecidos e respeitados no Brasil.
+    - Sempre inclua o link direto para a fonte original, facilitando a verificação pelo leitor.
+
+    Critérios de Qualidade:
+    - Não inclua conteúdos especulativos, opinativos ou não confirmados.
+    - Evite páginas que agreguem múltiplas notícias sem foco ou que sejam listas genéricas sem conteúdo original.
+    - Use técnicas de busca semântica para garantir que os resultados sejam diretamente relacionados ao tema solicitado, evitando páginas irrelevantes como front pages ou sumários.
+
+    Requisitos de Resultado:
+    - Garanta a coleta de pelo menos 30 desenvolvimentos distintos.
+    - Para cada notícia, forneça:
+      - ✅ Um título claro e conciso da notícia ou anúncio.
+      - 📍 Um resumo breve destacando os fatos principais e seu impacto.
+      - Uma descrição detalhada que explique o contexto e os detalhes relevantes.
+      - 🔗 O link direto para a fonte original.
+
+  expected_output: >
+    Uma lista com pelo menos 30 desenvolvimentos relevantes e recentes em IA, classificados por relevância e impacto, focando em fontes brasileiras e publicações da última semana de julho de 2025.
+
+  agent: ai_insights_curator
+
+write_impact_analysis_task:
+  description: >
+    Utilize somente informações publicadas em julho de 2025 para selecionar os 10 desenvolvimentos mais impactantes identificados na tarefa anterior e escreva análises detalhadas (300-400 palavras cada) explicando sua importância.
+
+    Para cada desenvolvimento, cubra:
+    - Explicação aprofundada do evento ou anúncio.
+    - Análise do impacto potencial em indústrias e modelos de negócio.
+    - Discussão das implicações sociais mais amplas, positivas e negativas.
+    - Linguagem clara e acessível, sem jargões técnicos excessivos, considerando leitores com interesse geral em tecnologia.
+    - Exemplos ou casos de uso para ilustrar os pontos.
+    - Citação das fontes para garantir precisão e credibilidade.
+
+    Não crie informações além do que está disponível nas fontes.
+
+  expected_output: >
+    Análises detalhadas (300-400 palavras cada) dos 10 desenvolvimentos mais impactantes, com explicações claras e citações das fontes.
+
+  agent: ai_content_writer
+
+review_and_edit_task:
+  description: >
+    Com base no conteúdo produzido, proponha uma estrutura clara e envolvente para o boletim semanal de IA, considerando:
+
+    - Um título atraente para o newsletter.
+    - Um resumo introdutório breve com os destaques da semana.
+    - Os artigos de análise de impacto detalhados.
+    - Uma seção com links curados para outras notícias e recursos relevantes (3-5 sugestões com descrições breves).
+
+    Avalie o rascunho completo, verificando:
+    - Precisão e veracidade das informações.
+    - Clareza, concisão e correção gramatical.
+    - Consistência de tom e estilo.
+    - Legibilidade e engajamento do texto.
+    - Funcionamento e relevância dos links.
+    - Fluxo lógico da estrutura do boletim.
+
+    Forneça um relatório detalhado com erros encontrados ou sugestões de melhoria. Se o boletim estiver adequado, aprove para distribuição.
+
+    Não crie informações além do conteúdo fornecido.
+
+  expected_output: >
+    Estrutura clara e envolvente para o boletim semanal, com saudação informal e respeitosa, texto objetivo e direto, formatado em Markdown, em português do Brasil.
+
+    O boletim deve iniciar com a imagem "weekly_logo_br.png" e seguir o estilo editorial do The New York Times adaptado para o formato do "r2talk newsletter".
+
+    Divida o conteúdo em duas seções:
+    - Business Impact News: 5 temas relacionados a negócios, com texto consolidado e links das fontes.
+    - Technical Stuff: 5 temas técnicos, também consolidados com links.
+
+    Finalize mencionando que o boletim foi escrito por um time de agentes AI da r2talk.
+
+  agent: newsletter_editor
+
