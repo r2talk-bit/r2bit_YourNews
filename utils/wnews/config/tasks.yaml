@@ -1,8 +1,8 @@
 curate_ai_insights_task:
   description: >
-    Realize uma busca detalhada para coletar e organizar as notícias mais relevantes e impactantes publicadas na última semana de julho de 2025, com foco prioritário em fontes brasileiras. O objetivo é fornecer insights curados para inclusão em um boletim informativo.
+    Realize uma busca detalhada em sites na Internet para coletar e organizar as notícias mais relevantes e impactantes publicadas na última semana de julho de 2025, com foco prioritário em fontes brasileiras. O objetivo é fornecer insights curados para inclusão em um boletim informativo.
 
-    Detailed Instructions:
+    Instrucoes:
 
     Seleção de Conteúdo:
     - Identifique no mínimo 30 fatos ou anúncios significativos publicados nos últimos 7 dias.
@@ -75,15 +75,8 @@ review_and_edit_task:
     Não crie informações além do conteúdo fornecido.
 
   expected_output: >
-    Estrutura clara e envolvente para o boletim semanal, com saudação informal e respeitosa, texto objetivo e direto, formatado em Markdown, em português do Brasil.
-
-    O boletim deve iniciar com a imagem "weekly_logo_br.png" e seguir o estilo editorial do The New York Times adaptado para o formato do "r2talk newsletter".
-
-    Divida o conteúdo em duas seções:
-    - Business Impact News: 5 temas relacionados a negócios, com texto consolidado e links das fontes.
-    - Technical Stuff: 5 temas técnicos, também consolidados com links.
-
-    Finalize mencionando que o boletim foi escrito por um time de agentes AI da r2talk.
+    Texto em Portugues, claro e envolvente.
+    Ao final de cada item, citar as fontes.
 
   agent: newsletter_editor
 

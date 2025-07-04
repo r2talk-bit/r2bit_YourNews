@@ -78,7 +78,7 @@ def search_news(subject):
         editor = Agent(
             role="Newsletter Editor",
             goal="Create a polished final newsletter with proper formatting and structure",
-            backstory="You ensure all content is accurate, well-organized, and ready for distribution.",
+            backstory="You ensure all content is accurate, well-organized, and ready for distribution. Always translate for Brazilian Portuguese.",
             verbose=True
         )
         
