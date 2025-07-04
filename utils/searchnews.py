@@ -59,7 +59,7 @@ def search_news(subject):
         # Create a search tool
         search_tool = SerperDevTool()
         
-        # Create agents directly
+        # Create agents directly with ASCII-only text to avoid encoding issues
         researcher = Agent(
             role="AI News Researcher",
             goal=f"Find the most relevant and recent information about {subject}",
@@ -82,7 +82,7 @@ def search_news(subject):
             verbose=True
         )
         
-        # Create tasks
+        # Create tasks with ASCII-only text
         research_task = Task(
             description=f"Research the latest news and developments about {subject}. Find at least 5 relevant sources.",
             expected_output="A detailed research report with links to sources and key findings.",

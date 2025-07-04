@@ -1,6 +1,8 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import SerperDevTool
+import yaml
+import os
 
 # If you want to run a snippet of code before or after the crew starts,
 # you can use the @before_kickoff and @after_kickoff decorators
@@ -13,8 +15,23 @@ class Wnews():
     # Learn more about YAML configuration files here:
     # Agents: https://docs.crewai.com/concepts/agents#yaml-configuration-recommended
     # Tasks: https://docs.crewai.com/concepts/tasks#yaml-configuration-recommended
-    agents_config = 'config/agents.yaml'
-    tasks_config = 'config/tasks.yaml'
+    agents_config_path = 'config/agents.yaml'
+    tasks_config_path = 'config/tasks.yaml'
+    
+    # Load YAML configs with explicit UTF-8 encoding
+    @property
+    def agents_config(self):
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        config_path = os.path.join(current_dir, self.agents_config_path)
+        with open(config_path, 'r', encoding='utf-8') as file:
+            return yaml.safe_load(file)
+    
+    @property
+    def tasks_config(self):
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        config_path = os.path.join(current_dir, self.tasks_config_path)
+        with open(config_path, 'r', encoding='utf-8') as file:
+            return yaml.safe_load(file)
 
     # Create tools
     search_tool = SerperDevTool()
