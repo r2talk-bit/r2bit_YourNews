@@ -19,7 +19,7 @@ st.set_page_config(
 )
 
 # Title and description
-st.title("News Search")
+st.title("Your News")
 
 # Create a two-column layout
 left_col, right_col = st.columns([1, 2])

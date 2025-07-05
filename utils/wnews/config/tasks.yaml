@@ -1,39 +1,39 @@
 news_research_task:
   description: >
-    Realize uma busca detalhada em sites da Internet para coletar e organizar as notícias mais relevantes e impactantes publicadas na última semana do mês corrente do ano de 2025, com foco prioritário em fontes brasileiras, a respeito de {topic}. O objetivo é fornecer insights curados para inclusão em um boletim informativo.
+    Realize uma busca detalhada em sites da Internet para coletar e organizar as notícias mais relevantes e impactantes publicadas na última semana do mês corrente do ano de 2025 a respeito de {topic}. O objetivo é fornecer insights curados para inclusão em um resumo de notícias.
 
     **Instruções:**
 
     **Seleção de Conteúdo:**
     - Identifique no mínimo **30 fatos ou anúncios significativos** publicados na última semana do mês corrente do ano de 2025.
-    - Priorize anúncios oficiais e reportagens de jornais de grande circulação no Brasil, como **Folha de S.Paulo, O Globo, Estadão, Agência Brasil**, além de comunicados oficiais de empresas e órgãos governamentais brasileiros.
-    - Busque conteúdos publicados em português para garantir autenticidade e contexto local.
-
+    - Priorize anúncios oficiais e reportagens de jornais de grande circulação no Brasil e internacionais, no Brasil exemplos dew fontes são como **Folha de S.Paulo, O Globo, Estadão, Agência Brasil**, além de comunicados oficiais de empresas e órgãos governamentais brasileiros.
+    
     **Fontes Confiáveis:**
     - Utilize exclusivamente fontes seguras, confiáveis e verificáveis, tais como:
     - Blogs oficiais de empresas e comunicados de imprensa.
     - Publicações acadêmicas e de pesquisa reconhecidas.
-    - Veículos jornalísticos estabelecidos e respeitados no Brasil.
+    - Preferencialmente sites de notícias jornalísticos estabelecidos.
     - **Sempre inclua o link direto para a fonte original**, facilitando a verificação pelo leitor.
 
     **Critérios de Qualidade:**
+    - O termo da busca deve aparecer no conteúdo pesquisado.
     - Não inclua conteúdos especulativos, opinativos ou não confirmados.
     - Não considere páginas que agreguem múltiplas notícias sem foco ou que sejam listas genéricas sem conteúdo original.
     - Use técnicas de busca semântica para garantir que os resultados sejam diretamente relacionados ao **{topic}**, evitando páginas irrelevantes como *front pages* ou sumários.
 
     **Requisitos de Resultado:**
     - Para cada notícia, forneça:
-      - ✅ Um título claro e conciso da notícia ou anúncio.
-      - 📍 Um resumo breve destacando os fatos principais e seu impacto.
+      - Um título claro e conciso da notícia ou anúncio.
+      - Um resumo breve destacando os fatos principais e seu impacto.
       - Uma descrição detalhada que explique o contexto e os detalhes relevantes.
-      - 🔗 O link direto para a fonte original.
+      - O link direto para a fonte original.
   expected_output: >
-      Uma lista completa da pesquisa, com fatos relevantes e recentes sobre {topic}, classificados por relevância e impacto, focando em fontes brasileiras e publicações da última semana de julho de 2025.
+      Uma lista completa da pesquisa, com fatos relevantes e recentes sobre {topic}, classificados por relevância e impacto, focando em publicações da última semana de julho de 2025.
   agent: news_researcher
 
 news_curator_analyst_task:
   description: >
-    Utilize SOMENTE informações publicadas na última semana do mês corrente do ano de 2025, com foco prioritário em fontes brasileiras, a respeito de {topic}, para selecionar os 30 fatos mais impactantes identificados na tarefa anterior a respeito de {topic} e escreva análises detalhadas (300-400 palavras cada) explicando sua importância.
+    Utilize SOMENTE informações publicadas na última semana do mês corrente do ano de 2025 a respeito de {topic}, para selecionar os 30 fatos mais impactantes identificados na tarefa anterior a respeito de {topic} e escreva análises detalhadas (300-400 palavras cada) explicando sua importância.
 
     Para cada fato, cubra:
     - Explicação aprofundada do fato ou anúncio.
@@ -45,15 +45,14 @@ news_curator_analyst_task:
 
     **Não crie informações além do que está disponível nas fontes.**
   expected_output: >
-    Análises detalhadas (300-400 palavras cada) dos fatos mais impactantes de {topic}, com explicações claras e citações das fontes.
+    Análises detalhadas (300-400 palavras cada) dos fatos mais impactantes de {topic}, com explicações claras e citações das fontes e LINKS.
   agent: news_curator_analyst
 
 review_and_edit_task:
   description: >
-    Com base no conteúdo produzido sobre {topic}, escreva a versão final do boletim semanal, considerando:
+    Com base no conteúdo produzido sobre {topic}, escreva a versão final do resumo de notícias, considerando:
 
-    - Um título atraente para o boletim.
-    - Um resumo introdutório breve com os destaques da semana.
+    - SEMPRE inclua o título "Notícias sobre {topic}"
     - Os artigos de análise de impacto detalhados.
 
     Avalie o rascunho completo, verificando:
@@ -61,9 +60,8 @@ review_and_edit_task:
     - Clareza, concisão e correção gramatical.
     - Consistência de tom e estilo.
     - Legibilidade e engajamento do texto.
-    - Fluxo lógico da estrutura do boletim.
 
     **Não crie informações além do conteúdo fornecido.**
   expected_output: >
-    Texto em Português, claro e envolvente sobre {topic}. Ao final de cada item, citar as fontes.
+    Texto em Português, claro e envolvente sobre {topic}. Ao final de cada item, SEMPRE citar as fontes com respectivos LINKS.
   agent: newsletter_editor

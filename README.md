@@ -198,4 +198,4 @@ As you become more comfortable with programming, you can customize YourNews by:
 
 ## License
 
-[Your License Information]
+MIT License

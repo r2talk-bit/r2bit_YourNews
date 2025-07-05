@@ -41,23 +41,24 @@ class Wnews():
         return Agent(
             config=self.agents_config['news_researcher'],
             tools=[SerperDevTool(),ScrapeWebsiteTool()],
-            verbose=True
+            verbose=False
         )
 
     @agent
     def news_curator_analyst(self) -> Agent:
         return Agent(
             config=self.agents_config['news_curator_analyst'],
-            verbose=True
+            verbose=False
         )
 
     @agent
     def newsletter_editor(self) -> Agent:
         return Agent(
             config=self.agents_config['newsletter_editor'],
-            verbose=True
+            verbose=False
         )
 
+    # Create tasks
     # To learn more about structured task outputs,
     # task dependencies, and task callbacks, check out the documentation:
     # https://docs.crewai.com/concepts/tasks#overview-of-a-task
@@ -94,6 +95,6 @@ class Wnews():
             agents=self.agents, # Automatically created by the @agent decorator
             tasks=self.tasks, # Automatically created by the @task decorator
             process=Process.sequential,
-            verbose=True,
+            verbose=False,
             # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
         )
