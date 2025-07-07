@@ -1,201 +1,494 @@
-# YourNews Streamlit Application
+# YourNews Streamlit Application 📰
 
-A Streamlit application for displaying and interacting with news content, powered by CrewAI for intelligent news search and analysis. This application helps you find, analyze, and present news on any topic using AI agents working together.
+> **Para iniciantes em programação**: Este é um projeto que usa inteligência artificial para buscar e resumir notícias sobre qualquer assunto que você quiser!
 
-## What is YourNews?
+YourNews é uma aplicação web construída com **Streamlit** (uma biblioteca Python para criar interfaces web de forma simples) e **CrewAI** (um framework para criar equipes de agentes de IA que trabalham juntos). A aplicação permite que você busque, analise e visualize notícias sobre qualquer assunto, tudo de forma automatizada.
 
-YourNews is a beginner-friendly application that uses artificial intelligence to search for news articles, analyze their content, and create well-formatted newsletters. It's perfect for:
+## O que é o YourNews? 🤔
 
-- Students learning about current events
-- Professionals who need to stay updated on industry news
-- Anyone interested in getting summarized news on specific topics
+YourNews é uma aplicação amigável para iniciantes que usa inteligência artificial para:
 
-## How It Works
+1. **Buscar notícias** sobre qualquer assunto na internet
+2. **Analisar o conteúdo** dessas notícias para encontrar as mais importantes
+3. **Criar newsletters bem formatadas** com resumos e análises
 
-YourNews uses a team of AI agents (called a "crew") that work together like a real news team:
+É como ter uma equipe de jornalistas trabalhando para você, só que usando IA!
 
-1. **News Researcher**: Searches the internet for the latest news on your topic
-2. **News Curator/Analyst**: Selects the most important stories and writes detailed analyses
-3. **Newsletter Editor**: Formats everything into a professional newsletter
+### Para quem é útil? 👤
 
-## Project Structure
+- **Estudantes** aprendendo sobre eventos atuais
+- **Profissionais** que precisam se manter atualizados sobre notícias do setor
+- **Programadores iniciantes** que querem aprender como integrar IA em projetos
+- **Qualquer pessoa** interessada em obter notícias resumidas sobre tópicos específicos
+
+## Como Funciona o YourNews 🔍
+
+O YourNews usa uma equipe de agentes de IA (chamada de "crew" no CrewAI) que trabalham juntos como uma verdadeira equipe de jornalismo:
+
+### Nossa Equipe Virtual de Notícias 💻
+
+1. **Pesquisador de Notícias** 🔎
+   - **Função**: Busca na internet as notícias mais recentes sobre o seu assunto
+   - **Como faz isso**: Usa ferramentas de busca na web (SerperDev) e extração de conteúdo de sites
+   - **Resultado**: Uma lista de notícias relevantes com links e descrições
+
+2. **Curador/Analista de Notícias** 📈
+   - **Função**: Seleciona as notícias mais importantes e escreve análises detalhadas
+   - **Como faz isso**: Lê o conteúdo coletado pelo Pesquisador e identifica as tendências e histórias mais relevantes
+   - **Resultado**: Análises aprofundadas das notícias mais importantes
+
+3. **Editor de Newsletter** 📝
+   - **Função**: Formata tudo em uma newsletter profissional e fácil de ler
+   - **Como faz isso**: Revisa e edita o conteúdo para garantir clareza, precisão e boa formatação
+   - **Resultado**: Uma newsletter completa e bem estruturada
+
+### Fluxo de Trabalho 📊
 
 ```
-/project-root
+Você digita um assunto → Pesquisador busca notícias → Curador analisa → Editor formata → Você recebe a newsletter
+```
+
+> **Conceito-chave para iniciantes**: Este projeto demonstra como diferentes "agentes" de IA podem trabalhar juntos em uma sequência, cada um realizando uma tarefa específica e passando o resultado para o próximo.
+
+## Estrutura do Projeto 📚
+
+Para programadores iniciantes, entender a estrutura de um projeto é fundamental. Aqui está como nosso projeto está organizado:
+
+```
+/pasta-raiz-do-projeto
 │
-├── .streamlit/        # Streamlit configuration files
-│   └── secrets.toml   # Secret keys and configuration
-├── assets/            # Images and other static assets
-├── example/           # Example files and templates
-├── utils/             # Helper functions and modules
-│   └── wnews/         # News crew implementation
-│       ├── config/    # Configuration files for agents and tasks
-│       └── crew.py    # Main crew implementation
-├── .dockerignore      # Files to exclude from Docker builds
-├── .env               # Environment variables
-├── .env.example       # Example environment file
-├── .gitignore         # Files to exclude from git
-├── Dockerfile         # Instructions for building Docker container
-├── README.md          # This documentation file
-├── requirements.txt   # Python dependencies
-└── streamlit_app.py   # Main application file
+├── .streamlit/        # Arquivos de configuração do Streamlit
+│   └── secrets.toml   # Chaves secretas e configurações (nunca compartilhe!)
+│
+├── assets/            # Imagens e outros recursos estáticos
+│
+├── example/           # Arquivos de exemplo e templates
+│
+├── utils/             # Funções auxiliares e módulos
+│   └── wnews/         # Implementação da equipe de notícias
+│       ├── config/    # Arquivos de configuração para agentes e tarefas
+│       └── crew.py    # Implementação principal da equipe
+│
+├── .dockerignore      # Arquivos a serem excluídos das builds Docker
+├── .env               # Variáveis de ambiente (chaves de API, configurações)
+├── .env.example       # Exemplo de arquivo de variáveis de ambiente
+├── .gitignore         # Arquivos a serem ignorados pelo git
+├── Dockerfile         # Instruções para construir o container Docker
+├── README.md          # Este arquivo de documentação
+├── requirements.txt   # Dependências Python (bibliotecas necessárias)
+└── streamlit_app.py   # Arquivo principal da aplicação
 ```
 
-## Setup
+### Arquivos Principais para Iniciantes 🔍
 
-### Local Development
+Se você está começando, foque nestes arquivos:
 
-1. Create a virtual environment:
+1. **`streamlit_app.py`** - O arquivo principal que cria a interface web
+2. **`utils/searchnews.py`** - Contém a função que busca notícias
+3. **`utils/wnews/crew.py`** - Define a equipe de agentes de IA
+4. **`utils/wnews/config/`** - Arquivos YAML que configuram os agentes e tarefas
+5. **`.env`** - Onde você coloca suas chaves de API (nunca compartilhe este arquivo!)
+
+## Configurando o Projeto 🔧
+
+### Desenvolvimento Local (Passo a Passo para Iniciantes)
+
+#### 1. Preparando seu Ambiente Python
+
+Primeiro, precisamos criar um "ambiente virtual" - um espaço isolado para instalar as bibliotecas do projeto sem afetar o resto do seu computador.
+
+```bash
+# Crie um ambiente virtual chamado "venv"
+python -m venv venv
+```
+
+> **O que isso faz?** 🤔 Cria uma pasta chamada "venv" que contém uma cópia isolada do Python e suas ferramentas.
+
+#### 2. Ativando o Ambiente Virtual
+
+Agora precisamos "ativar" esse ambiente para usá-lo:
+
+**No Windows:**
+```bash
+venv\Scripts\activate
+```
+
+**No Mac ou Linux:**
+```bash
+source venv/bin/activate
+```
+
+> **Como saber se funcionou?** 🔍 Você verá `(venv)` no início da linha de comando.
+
+#### 3. Instalando as Bibliotecas Necessárias
+
+Agora vamos instalar todas as bibliotecas que o projeto precisa:
+
+```bash
+pip install -r requirements.txt
+```
+
+> **O que isso faz?** 📚 Lê a lista de bibliotecas no arquivo `requirements.txt` e instala todas elas no seu ambiente virtual.
+
+#### 4. Configurando as Chaves de API
+
+O projeto precisa de chaves de API para funcionar corretamente:
+
+1. Copie o arquivo de exemplo para criar seu próprio arquivo de configuração:
+   ```bash
+   copy .env.example .env   # No Windows
+   # OU
+   cp .env.example .env     # No Mac/Linux
    ```
-   python -m venv venv
+
+2. Abra o arquivo `.env` em um editor de texto e adicione suas chaves de API:
+   ```
+   SERPER_API_KEY=sua_chave_aqui
+   OPENAI_API_KEY=sua_chave_aqui
    ```
 
-2. Activate the virtual environment:
-   - Windows: `venv\Scripts\activate`
-   - Unix/MacOS: `source venv/bin/activate`
+> **Onde conseguir as chaves?** 🔑
+> - Para a SERPER_API_KEY: Registre-se em [SerperDev](https://serper.dev)
+> - Para a OPENAI_API_KEY: Registre-se em [OpenAI](https://platform.openai.com)
 
-3. Install dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
+#### 5. Executando a Aplicação
 
-4. Set up environment variables:
-   - Copy `.env.example` to `.env`
-   - Update the values in `.env` with your configuration
+Agora você pode iniciar a aplicação:
 
-5. Run the application:
-   ```
-   streamlit run streamlit_app.py
-   ```
+```bash
+streamlit run streamlit_app.py
+```
 
-### Docker
+> **O que acontecerá?** 🌐 O Streamlit iniciará um servidor web local e abrirá automaticamente seu navegador com a aplicação YourNews.
 
-1. Build the Docker image:
-   ```
-   docker build -t yournews-app .
-   ```
+### Usando Docker (Para Usuários Mais Avançados) 📦
 
-2. Run the Docker container:
-   ```
-   docker run -p 8501:8501 yournews-app
-   ```
+Docker é uma tecnologia que permite empacotar a aplicação e todas as suas dependências em um "container" isolado. É como uma caixa que contém tudo o que a aplicação precisa para funcionar.
 
-3. Access the application at `http://localhost:8501`
+> **Nota para iniciantes:** Se você nunca usou Docker antes, recomendamos seguir o método de desenvolvimento local acima. Docker é uma ferramenta mais avançada.
 
-## Configuration
+#### 1. Construindo a Imagem Docker
 
-- Environment variables are stored in the `.env` file
-- Secrets are stored in `.streamlit/secrets.toml`
-- Required API keys:
-  - `SERPER_API_KEY`: API key for the SerperDev search tool
-  - `OPENAI_API_KEY`: API key for OpenAI services used by CrewAI
+```bash
+# Isso cria uma "imagem" - um template para o container
+docker build -t yournews-app .
+```
 
-## Features
+> **O que isso faz?** 🏠 Lê as instruções no arquivo `Dockerfile` e cria uma imagem chamada "yournews-app".
 
-### CrewAI Integration
+#### 2. Executando o Container
 
-YourNews uses CrewAI to create intelligent agent-based workflows for news search and analysis:
+```bash
+# Isso inicia um container baseado na imagem que criamos
+docker run -p 8501:8501 yournews-app
+```
 
-- **News Search**: Search for news articles on any subject using the SerperDev search tool
-- **Content Analysis**: AI agents analyze and summarize news content
-- **Newsletter Generation**: Automatically generate well-formatted newsletters based on search results
+> **O que isso faz?** 🚀 Inicia a aplicação dentro de um container e conecta a porta 8501 do container à porta 8501 do seu computador.
 
-### Agent Roles and Objectives
+#### 3. Acessando a Aplicação
 
-The application uses a team of specialized AI agents, each with specific roles:
+Abra seu navegador e acesse:
+```
+http://localhost:8501
+```
 
-1. **News Researcher**: 
-   - **Objective**: Search the internet for detailed and relevant news about your topic
-   - **What it does**: Identifies main news stories, filters for relevance, and prioritizes the most important ones
-   - **Output**: Collects at least 30 significant news items with links and relevance comments
+## Configuração do Projeto ⚙️
 
-2. **News Curator/Analyst**: 
-   - **Objective**: Transform research into meaningful analysis
-   - **What it does**: Selects the 10 most impactful stories and writes detailed analyses (300-400 words each)
-   - **Output**: Clear explanations of each news item's importance and potential impact
+### Arquivos de Configuração Importantes
 
-3. **Newsletter Editor**: 
-   - **Objective**: Create a polished, professional newsletter
-   - **What it does**: Reviews and edits all content for accuracy, clarity, and grammar
-   - **Output**: A well-structured newsletter with an engaging title, introduction, detailed analyses, and additional resource links
+#### 1. Variáveis de Ambiente (`.env`)
 
-## How to Use YourNews (For Beginners)
+Este arquivo contém configurações que podem mudar dependendo do ambiente onde a aplicação está sendo executada.
 
-### Using the Streamlit Interface (Easiest Method)
+```
+# Exemplo de arquivo .env
+SERPER_API_KEY=sua_chave_aqui
+OPENAI_API_KEY=sua_chave_aqui
+```
 
-1. **Start the application** (see Setup instructions below)
-2. **Enter a search term** in the search box (like "climate change" or "artificial intelligence")
-3. **Click the search button** and wait for the AI agents to work
-4. **View your results** - a complete newsletter will be generated for you!
+> **Por que usar um arquivo .env?** 🔐 É uma prática de segurança! Mantém informações sensíveis (como chaves de API) fora do código-fonte e evita que sejam compartilhadas acidentalmente.
 
-### Using Python Code (For Learning Programmers)
+#### 2. Segredos do Streamlit (`.streamlit/secrets.toml`)
 
-If you're learning programming, you can use YourNews in your Python code:
+O Streamlit tem seu próprio sistema para gerenciar segredos, especialmente útil quando você implanta a aplicação na nuvem.
+
+```toml
+# Exemplo de arquivo secrets.toml
+[api_keys]
+serper = "sua_chave_aqui"
+openai = "sua_chave_aqui"
+```
+
+### Chaves de API Necessárias
+
+Para que a aplicação funcione corretamente, você precisa de duas chaves de API:
+
+1. **`SERPER_API_KEY`**: 
+   - **O que é?** Chave para a ferramenta de busca SerperDev, que permite buscar notícias na web
+   - **Como obter?** Registre-se em [SerperDev](https://serper.dev) e obtenha uma chave gratuita ou paga
+
+2. **`OPENAI_API_KEY`**: 
+   - **O que é?** Chave para os serviços da OpenAI (como GPT-4) usados pelo CrewAI
+   - **Como obter?** Registre-se em [OpenAI](https://platform.openai.com) e crie uma chave de API
+
+> **Dica para iniciantes:** Ambas as plataformas oferecem opções gratuitas ou de teste que são suficientes para começar a usar o YourNews.
+
+## Recursos da Aplicação ✨
+
+### Integração com CrewAI 🤖
+
+O YourNews usa o framework CrewAI para criar fluxos de trabalho inteligentes baseados em agentes para busca e análise de notícias:
+
+![Diagrama do CrewAI](https://raw.githubusercontent.com/joaomdmoura/crewAI/main/docs/diagram.png)
+
+- **Busca de Notícias**: Busca artigos de notícias sobre qualquer assunto usando a ferramenta SerperDev
+- **Análise de Conteúdo**: Agentes de IA analisam e resumem o conteúdo das notícias
+- **Geração de Newsletter**: Gera automaticamente newsletters bem formatadas com base nos resultados da busca
+
+### Funções e Objetivos dos Agentes 👨‍💻
+
+A aplicação usa uma equipe de agentes de IA especializados, cada um com funções específicas:
+
+#### 1. Pesquisador de Notícias 🔎
 
 ```python
-# Basic usage - just import and call the search function
+# Trecho de código que define o agente pesquisador
+@agent
+def news_researcher(self) -> Agent:
+    return Agent(
+        config=self.agents_config['news_researcher'],
+        tools=[SerperDevTool(), ScrapeWebsiteTool()],  # Ferramentas que o agente pode usar
+        verbose=True
+    )
+```
+
+- **Objetivo**: Buscar na internet notícias detalhadas e relevantes sobre o seu tópico
+- **O que ele faz**: Identifica as principais notícias, filtra por relevância e prioriza as mais importantes
+- **Saída**: Coleta pelo menos 30 notícias significativas com links e comentários sobre sua relevância
+
+#### 2. Curador/Analista de Notícias 📈
+
+```python
+# Trecho de código que define o agente curador
+@agent
+def news_curator_analyst(self) -> Agent:
+    return Agent(
+        config=self.agents_config['news_curator_analyst'],
+        verbose=True
+    )
+```
+
+- **Objetivo**: Transformar a pesquisa em análises significativas
+- **O que ele faz**: Seleciona as 10 histórias mais impactantes e escreve análises detalhadas (300-400 palavras cada)
+- **Saída**: Explicações claras sobre a importância e o impacto potencial de cada notícia
+
+#### 3. Editor de Newsletter 📝
+
+```python
+# Trecho de código que define o agente editor
+@agent
+def newsletter_editor(self) -> Agent:
+    return Agent(
+        config=self.agents_config['newsletter_editor'],
+        verbose=True
+    )
+```
+
+- **Objetivo**: Criar uma newsletter polida e profissional
+- **O que ele faz**: Revisa e edita todo o conteúdo para garantir precisão, clareza e gramática correta
+- **Saída**: Uma newsletter bem estruturada com um título atraente, introdução, análises detalhadas e links para recursos adicionais
+
+> **Conceito-chave para iniciantes**: Cada agente é como um "especialista" em uma tarefa específica. Juntos, eles formam uma equipe que pode realizar tarefas complexas que seriam difíceis para um único modelo de IA.
+
+## Como Usar o YourNews (Guia para Iniciantes) 👍
+
+### Usando a Interface Streamlit (Método Mais Fácil) 👌
+
+![Exemplo de Interface Streamlit](https://raw.githubusercontent.com/streamlit/streamlit/master/examples/assets/screenshot.png)
+
+1. **Inicie a aplicação** (siga as instruções de Configuração acima)
+2. **Digite um termo de busca** na caixa de pesquisa (como "mudanças climáticas" ou "inteligência artificial")
+3. **Clique no botão de busca** e aguarde os agentes de IA trabalharem
+   - Você verá uma barra de progresso enquanto os agentes trabalham
+   - Isso pode levar alguns minutos, dependendo do assunto
+4. **Veja seus resultados** - uma newsletter completa será gerada para você!
+   - Os resultados são formatados em Markdown para fácil leitura
+   - Você pode copiar o conteúdo ou compartilhá-lo diretamente
+
+### Usando o Código Python (Para Programadores em Aprendizado) 👨‍💻
+
+Se você está aprendendo programação, pode usar o YourNews em seu código Python. Aqui está um exemplo simples:
+
+```python
+# Uso básico - apenas importe e chame a função de busca
 from utils.searchnews import search_news
 
-# Search for news on a specific subject
-results = search_news("artificial intelligence")
-print(results)
+# Busque notícias sobre um assunto específico
+resultados = search_news("inteligência artificial")
+
+# Exiba os resultados
+print(resultados)
 ```
 
-### Advanced Usage (As You Learn More)
+> **O que este código faz?** 🤔
+> 1. Importa a função `search_news` do módulo `utils.searchnews`
+> 2. Chama essa função com o assunto "inteligência artificial"
+> 3. Armazena os resultados na variável `resultados`
+> 4. Exibe os resultados no console
 
-As you become more comfortable with programming, you can customize how the crew works:
+### Uso Avançado (Conforme Você Aprende Mais) 💯
+
+À medida que você se torna mais confortável com programação, pode personalizar como a equipe de agentes funciona:
 
 ```python
+# Importa a classe Wnews do módulo crew
 from utils.wnews.crew import Wnews
 
-# Initialize the crew
-news_crew = Wnews()
+# Inicializa a equipe de agentes
+equipe_noticias = Wnews()
 
-# Run the crew with your topic
-result = news_crew.crew().kickoff(inputs={"topic": "artificial intelligence"})
-print(result)
+# Executa a equipe com seu tópico
+resultado = equipe_noticias.crew().kickoff(inputs={"topic": "inteligência artificial"})
+
+# Exibe o resultado
+print(resultado)
 ```
 
-### Understanding the Process
+> **Explicação do código avançado:** 🔍
+> - `Wnews()` cria uma instância da classe que define a equipe de agentes
+> - `.crew()` configura a equipe com todos os agentes e tarefas
+> - `.kickoff()` inicia o processo de busca com o tópico especificado
+> - O parâmetro `inputs` é um dicionário que contém os dados de entrada para a equipe
 
-When you run YourNews, here's what happens behind the scenes:
+### Entendendo o Processo Passo a Passo 📝
 
-1. The **News Researcher** agent searches for at least 30 recent news items about your topic
-2. The **News Curator/Analyst** agent selects the 10 most important stories and writes detailed analyses
-3. The **Newsletter Editor** agent formats everything into a professional newsletter
+Quando você executa o YourNews, aqui está o que acontece nos bastidores:
 
-All of this happens automatically - you just provide the topic!
+1. O **Pesquisador de Notícias** busca pelo menos 30 notícias recentes sobre seu tópico
+   - Ele usa a API SerperDev para buscar na web
+   - Também pode extrair conteúdo de sites específicos
 
-## Customizing YourNews (As You Learn More)
+2. O **Curador/Analista de Notícias** seleciona as 10 histórias mais importantes e escreve análises detalhadas
+   - Ele lê os resultados do Pesquisador
+   - Identifica tendências e padrões nas notícias
+   - Escreve análises aprofundadas sobre cada notícia importante
 
-As you become more comfortable with programming, you can customize YourNews by:
+3. O **Editor de Newsletter** formata tudo em uma newsletter profissional
+   - Ele revisa o conteúdo para garantir clareza e precisão
+   - Adiciona títulos, introdução e conclusão
+   - Formata o conteúdo em Markdown para fácil leitura
 
-1. **Modifying agent behaviors**: Edit the YAML files in `utils/wnews/config/` to change how agents work
-   - `agents.yaml`: Change agent roles, goals, and backstories
-   - `tasks.yaml`: Modify what each agent does and how they do it
+Tudo isso acontece automaticamente - você só precisa fornecer o tópico!
 
-2. **Adding new tools**: In `crew.py`, you can add more tools to agents:
-   ```python
-   @agent
-   def news_researcher(self) -> Agent:
-       return Agent(
-           config=self.agents_config['news_researcher'],
-           tools=[SerperDevTool(), ScrapeWebsiteTool(), YourNewTool()],  # Add new tools here
-           verbose=True
-       )
-   ```
+## Personalizando o YourNews (Conforme Você Aprende Mais) 🔧
 
-3. **Creating new agents**: Add new agent definitions to `agents.yaml` and then create methods for them in `crew.py`
+À medida que você se torna mais confortável com programação, pode personalizar o YourNews de várias maneiras:
 
-4. **Changing the workflow**: Modify the task dependencies in `crew.py` to change how information flows between agents
+### 1. Modificando o Comportamento dos Agentes 👨‍💻
 
-## Common Issues for Beginners
+Edite os arquivos YAML em `utils/wnews/config/` para alterar como os agentes trabalham:
 
-- **API Key Errors**: Make sure you've set up your API keys in the `.env` file
-- **Import Errors**: Check that you've installed all requirements with `pip install -r requirements.txt`
-- **No Results**: Ensure your search term is specific enough and that your internet connection is working
-- **Slow Performance**: The AI agents take time to work - be patient!
+**Exemplo de `agents.yaml`:**
+```yaml
+news_researcher:
+  role: "News Researcher"
+  goal: "Buscar notícias detalhadas e relevantes sobre o tópico solicitado"
+  backstory: "Você é um pesquisador experiente especializado em encontrar informações..."
+```
 
-## License
+**Exemplo de `tasks.yaml`:**
+```yaml
+news_research_task:
+  description: "Buscar notícias detalhadas e relevantes sobre: {topic}"
+  expected_output: "Uma lista de pelo menos 30 notícias relevantes..."
+  agent: "news_researcher"
+```
 
-MIT License
+### 2. Adicionando Novas Ferramentas 🔧
+
+Em `crew.py`, você pode adicionar mais ferramentas aos agentes:
+
+```python
+@agent
+def news_researcher(self) -> Agent:
+    return Agent(
+        config=self.agents_config['news_researcher'],
+        # Adicione novas ferramentas aqui
+        tools=[SerperDevTool(), ScrapeWebsiteTool(), SuaNovaFerramenta()],
+        verbose=True
+    )
+```
+
+> **Dica para iniciantes:** As ferramentas são classes que implementam funcionalidades específicas que os agentes podem usar, como busca na web, extração de conteúdo, etc.
+
+### 3. Criando Novos Agentes 👨‍🎓
+
+1. Adicione definições de novos agentes ao arquivo `agents.yaml`
+2. Crie métodos para eles em `crew.py`
+
+```python
+@agent
+def seu_novo_agente(self) -> Agent:
+    return Agent(
+        config=self.agents_config['seu_novo_agente'],
+        tools=[...],  # Ferramentas que o agente pode usar
+        verbose=True
+    )
+```
+
+### 4. Alterando o Fluxo de Trabalho 📈
+
+Modifique as dependências de tarefas em `crew.py` para alterar como as informações fluem entre os agentes:
+
+```python
+@task
+def sua_nova_tarefa(self) -> Task:
+    return Task(
+        config=self.tasks_config['sua_nova_tarefa'],
+        output_file='resultado.txt',
+        # Defina quais tarefas devem ser concluídas antes desta
+        context=[self.news_research_task(), self.news_curator_analyst_task()]
+    )
+```
+
+## Problemas Comuns para Iniciantes 🚫
+
+### Erros de Chave de API 🔑
+
+**Problema:** Mensagens de erro sobre chaves de API ausentes ou inválidas.
+
+**Solução:** 
+- Verifique se você criou o arquivo `.env` corretamente
+- Confirme se as chaves de API estão corretas e não contêm espaços extras
+- Exemplo correto: `SERPER_API_KEY=sua_chave_aqui` (sem espaços ao redor do sinal de igual)
+
+### Erros de Importação 📦
+
+**Problema:** Mensagens como "ModuleNotFoundError: No module named 'crewai'"
+
+**Solução:**
+- Verifique se você instalou todas as dependências com `pip install -r requirements.txt`
+- Confirme se o ambiente virtual está ativado (deve aparecer `(venv)` no terminal)
+- Se necessário, instale pacotes específicos: `pip install crewai crewai_tools`
+
+### Sem Resultados 👎
+
+**Problema:** A busca não retorna resultados ou retorna resultados vazios.
+
+**Solução:**
+- Verifique se seu termo de busca é específico o suficiente
+- Confirme se sua conexão com a internet está funcionando
+- Verifique os logs para ver se há erros nas chamadas de API
+
+### Desempenho Lento ⏳
+
+**Problema:** A aplicação demora muito para retornar resultados.
+
+**Solução:**
+- Os agentes de IA levam tempo para trabalhar - seja paciente!
+- Buscas mais específicas geralmente são mais rápidas
+- Considere ajustar os parâmetros de busca para limitar o número de resultados
+
+## Licença 📜
+
+MIT License - Você pode usar, modificar e distribuir este código livremente, desde que mantenha a atribuição original.
