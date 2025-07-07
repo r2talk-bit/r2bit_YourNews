@@ -28,7 +28,7 @@ news_research_task:
       - Uma descrição detalhada que explique o contexto e os detalhes relevantes.
       - O link direto para a fonte original.
   expected_output: >
-      Uma lista completa da pesquisa, com fatos relevantes e recentes sobre {topic}, classificados por relevância e impacto, focando em publicações da última semana de julho de 2025.
+      Uma lista completa da pesquisa, com fatos relevantes e recentes sobre {topic}, classificados por relevância e impacto, focando em publicações da última semana de julho de 2025. Sempre com o link par a fonte da informação.
   agent: news_researcher
 
 news_curator_analyst_task:
@@ -45,7 +45,7 @@ news_curator_analyst_task:
 
     **Não crie informações além do que está disponível nas fontes.**
   expected_output: >
-    Análises detalhadas (300-400 palavras cada) dos fatos mais impactantes de {topic}, com explicações claras e citações das fontes e LINKS.
+    Análises detalhadas (um parágrafo cada) dos fatos mais impactantes de {topic}, com explicações claras e citações das fontes e sempre informando os LINKS da fonte da informação.
   agent: news_curator_analyst
 
 review_and_edit_task:
@@ -63,5 +63,7 @@ review_and_edit_task:
 
     **Não crie informações além do conteúdo fornecido.**
   expected_output: >
-    Texto em Português, claro e envolvente sobre {topic}. Ao final de cada item, SEMPRE citar as fontes com respectivos LINKS.
+    Texto em Português, claro e envolvente sobre {topic}. 
+    Ao final de cada item, SEMPRE citar as fontes com respectivos LINKS.
+    Usar um parágrafo, com até 140 palavras (aproximadamente) para cada notícia.
   agent: newsletter_editor
