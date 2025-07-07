@@ -75,7 +75,7 @@ class Wnews():
             # Fornece ferramentas para o agente usar
             tools=[SerperDevTool(),ScrapeWebsiteTool()],
             # Quando verbose=True, mostra detalhes do pensamento do agente durante a execução
-            verbose=True
+            verbose=False
         )
 
     @agent
@@ -88,7 +88,7 @@ class Wnews():
         return Agent(
             config=self.agents_config['news_curator_analyst'],
             # Este agente não recebe ferramentas específicas, pois trabalha com os dados já coletados
-            verbose=True
+            verbose=False
         )
 
     @agent
@@ -100,7 +100,7 @@ class Wnews():
         """
         return Agent(
             config=self.agents_config['newsletter_editor'],
-            verbose=True
+            verbose=False
         )
 
     # ===== DEFINIÇÃO DAS TAREFAS =====
@@ -176,7 +176,7 @@ class Wnews():
             # Define o processo como sequencial: as tarefas são executadas em ordem
             process=Process.sequential,
             # Quando verbose=True, mostra detalhes da execução da equipe
-            verbose=True,
+            verbose=False,
             # Alternativa: process=Process.hierarchical - para um processo hierárquico
             # Saiba mais em: https://docs.crewai.com/how-to/Hierarchical/
         )

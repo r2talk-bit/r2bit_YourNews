@@ -55,7 +55,8 @@ left_col, right_col = st.columns([1, 2])
 with left_col:
     # Criamos um campo de entrada de texto para o usuário digitar o assunto da busca
     # O valor digitado será armazenado na variável 'subject'
-    subject = st.text_input("Enter a subject to search for news about:")
+    # Limitamos o campo a 20 caracteres
+    subject = st.text_input("Enter a subject to search for news about:", max_chars=20)
     
     # Adicionamos um botão para iniciar a busca
     # Quando clicado, search_button será True, caso contrário será False
@@ -99,4 +100,4 @@ with right_col:
 # Adicionamos um rodapé à página, fora das colunas
 # Isso aparecerá na parte inferior da página
 st.markdown("---")  # Linha horizontal para separar o conteúdo do rodapé
-st.markdown("© 2025 YourNews App | Created with Streamlit")  # Texto de copyright
+st.markdown(" 2025 YourNews App | Created with Streamlit")  # Texto de copyright
